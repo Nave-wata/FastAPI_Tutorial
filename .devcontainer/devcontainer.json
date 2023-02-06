@@ -1,0 +1,10 @@
+{
+    "name": "fastapi-tutorial",
+    "dockerComposeFile": "../docker/docker-compose.yaml",
+    "service": "fastapi_tutorial",
+    "workspaceFolder": "/usr/src/app",
+    "forwardPorts": [8080],
+    "remoteUser": "dev",
+    "postCreateCommand": "chmod u+x ./.devcontainer/postCreateCommand.sh ./.devcontainer/postStartCommand.sh && ./.devcontainer/postCreateCommand.sh",
+    "postStartCommand": "./.devcontainer/postStartCommand.sh"
+}
