@@ -4,10 +4,12 @@ WORKDIR /usr/src/app
 
 ENV LANG=C.UTF-8
 
-COPY requirements.txt .
+COPY ./requirements.txt .
 
 RUN apt-get update; \
     apt-get install -y --no-install-recommends \
+        default-libmysqlclient-dev \
+        gcc \
         git \
         openssh-client \
         wget \
