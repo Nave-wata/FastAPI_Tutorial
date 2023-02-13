@@ -5,6 +5,10 @@ from sqlalchemy.orm import Session
 from database import engine
 import crud, models, schemas, oauth2, hash, database
 
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+from fastapi.requests import Request
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -52,3 +56,10 @@ def get_token(request: OAuth2PasswordRequestForm = authDepends(), db: Session = 
         "user_id": user.id,
         "user_name": user.name
     }
+
+
+templates = Jinja2Templates(directory="./templates")
+
+@app.get("/page/", response_class=HTMLResponse)
+def get_page(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
