@@ -45,7 +45,7 @@ def get_token(request: OAuth2PasswordRequestForm = authDepends(), db: Session = 
             detail='Incorrect password'
         )
     
-    access_token = oauth2.create_access_token(data={"sub": user.name})
+    access_token = oauth2.create_access_token(data={"sub": user.name}, expires_delta=oauth2.ACCESS_TOKEN_EXPIRE_MINUTES)
     return {
         "access_token": access_token,
         "token_type": "bearer",
